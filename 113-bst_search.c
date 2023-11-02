@@ -1,22 +1,29 @@
 #include "binary_trees.h"
 
 /**
- * bst_search - Searches for a valu
- * @tree: Pointer to the root node
- * @value: The value to searc
- * Return: Pointer to the node containin
+ * bst_search - searches for a value in a Binary Search Tree
+ * @tree: a pointer to the root node of the BST to search
+ * @value: the value to search in the tree
+ * Return: A pointer to the node containing an int equal to `value`
+ *         NULL if tree is NULL
+ *         NULL if no match is found
  */
 bst_t *bst_search(const bst_t *tree, int value)
 {
-if (tree == NULL)
-return (NULL);
+	bst_t *node = (bst_t *)tree;
 
-if (value == tree->n)
-return (bst_t *)tree;
+	if (!tree)
+		return (NULL);
 
-if (value < tree->n)
-return bst_search(tree->left, value);
-else
-return bst_search(tree->right, value);
+	while (node)
+	{
+		if (value == node->n)
+			return (node);
+		if (value < node->n)
+			node = node->left;
+		else if (value > node->n)
+			node = node->right;
+	}
+
+	return (NULL);
 }
-
